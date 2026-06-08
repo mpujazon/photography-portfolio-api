@@ -16,19 +16,19 @@ model Photo {
 }
 
 model Album {
-  id           String             @id @default(uuid()) @db.Uuid
+  id           String          @id @default(uuid()) @db.Uuid
   title        String
-  slug         String             @unique
+  slug         String          @unique
   description  String?
-  layoutType   AlbumLayoutType    @default(GRID)
-  orderIndex   Int                @default(0)
-  coverPhotoId String?            @db.Uuid
-  isPublished  Boolean            @default(false)
-  createdAt    DateTime           @default(now())
-  updatedAt    DateTime           @updatedAt
+  layoutType   AlbumLayoutType @default(GRID)
+  orderIndex   Int             @default(0)
+  coverPhotoId String?         @db.Uuid
+  isPublished  Boolean         @default(false)
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
 }
 
-enum AlbumLayoutType{
+enum AlbumLayoutType {
   GRID
   MASONRY
   CAROUSEL

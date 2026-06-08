@@ -1,4 +1,11 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
+import { AlbumsService } from './albums.service';
 
-@Controller('albums')
-export class AlbumsController {}
+@Controller('public/albums')
+export class AlbumsController {
+  constructor(private readonly albumsService: AlbumsService) {}
+  @Get()
+  findPublishedAlbums() {
+    return this.albumsService.findPublishedAlbums();
+  }
+}

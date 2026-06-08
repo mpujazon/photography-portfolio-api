@@ -7,7 +7,7 @@ const adapter = new PrismaPg({
 });
 
 @Injectable()
-export class PrismaServiceService
+export class PrismaService
   extends PrismaClient
   implements OnModuleInit, OnModuleDestroy
 {

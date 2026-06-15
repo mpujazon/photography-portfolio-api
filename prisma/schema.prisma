@@ -8,11 +8,16 @@ datasource db {
   provider = "postgresql"
 }
 
-model Photo {
-  id        Int      @id @default(autoincrement())
-  title     String
-  imageUrl  String
-  createdAt DateTime @default(now())
+enum AlbumLayoutType {
+  GRID
+  MASONRY
+  CAROUSEL
+}
+
+model SiteConfig {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt
 }
 
 model Album {
@@ -23,13 +28,26 @@ model Album {
   layoutType   AlbumLayoutType @default(GRID)
   orderIndex   Int             @default(0)
   coverPhotoId String?         @db.Uuid
+  coverPhoto   Photo?          @relation("AlbumCover", fields: [coverPhotoId], references: [id])
+  photos       Photo[]         @relation("AlbumPhotos")
   isPublished  Boolean         @default(false)
   createdAt    DateTime        @default(now())
   updatedAt    DateTime        @updatedAt
 }
 
-enum AlbumLayoutType {
-  GRID
-  MASONRY
-  CAROUSEL
+model Photo {
+  id           String   @id @default(uuid()) @db.Uuid
+  title        String
+  imageUrl     String
+  cloudinaryId String?
+  category     String?
+  description  String?
+  albumId      String?  @db.Uuid
+  album        Album?   @relation("AlbumPhotos", fields: [albumId], references: [id])
+  coverOfAlbum Album[]  @relation("AlbumCover")
+  orderIndex   Int      @default(0)
+  isFeatured   Boolean  @default(false)
+  isPublished  Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }

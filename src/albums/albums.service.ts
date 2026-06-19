@@ -26,6 +26,7 @@ export class AlbumsService {
         slug: slug,
         isPublished: true,
       },
+      include: { photos: true }
     });
     return album ? mapAlbumToPublicResponse(album) : null;
   }

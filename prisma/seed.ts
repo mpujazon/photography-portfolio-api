@@ -542,7 +542,7 @@ const elmsPhotos = [
 ];
 
 async function main() {
-  await prisma.album.upsert({
+  const motoGpAlbum = await prisma.album.upsert({
     where: { slug: 'moto-gp-catalonia-2026' },
     update: {
       title: 'MotoGP Catalonia 2026',
@@ -561,7 +561,7 @@ async function main() {
     },
   });
 
-  await prisma.album.upsert({
+  const elmsAlbum = await prisma.album.upsert({
     where: { slug: 'elms-catalonia-2023' },
     update: {
       title: 'European Le Mans 2023 Catalunya',
@@ -580,9 +580,16 @@ async function main() {
     },
   });
 
-  for (const photo of [...motoGpPhotos, ...elmsPhotos]) {
+  const photoAlbumPairs = [
+    ...motoGpPhotos.map((p) => ({ ...p, albumId: motoGpAlbum.id })),
+    ...elmsPhotos.map((p) => ({ ...p, albumId: elmsAlbum.id })),
+  ];
+
+  for (const photo of photoAlbumPairs) {
     const existing = await prisma.photo.findFirst({ where: { url: photo.url } });
-    if (!existing) {
+    if (existing) {
+      await prisma.photo.update({ where: { id: existing.id }, data: { albumId: photo.albumId } });
+    } else {
       await prisma.photo.create({ data: photo });
     }
   }

@@ -16,6 +16,8 @@ model Photo {
   description    String?
   isFeatured     Boolean  @default(false)
   cameraSettings Json?
+  albumId        String?  @db.Uuid
+  album          Album?   @relation(fields: [albumId], references: [id])
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 }
@@ -29,6 +31,7 @@ model Album {
   coverPhotoId String?         @db.Uuid
   isPublished  Boolean         @default(false)
   isFeatured   Boolean         @default(false)
+  photos       Photo[]
   createdAt    DateTime        @default(now())
   updatedAt    DateTime        @updatedAt
 }

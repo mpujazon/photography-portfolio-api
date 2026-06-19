@@ -23,17 +23,17 @@ async function main() {
     update: {
       title: 'Street Photography',
       description: 'A collection of urban and street photography.',
-      layoutType: 'MASONRY',
       orderIndex: 1,
       isPublished: true,
+      isFeatured: true,
     },
     create: {
       title: 'Street Photography',
       slug: 'street-photography',
       description: 'A collection of urban and street photography.',
-      layoutType: 'MASONRY',
       orderIndex: 1,
       isPublished: true,
+      isFeatured: true,
     },
   });
 
@@ -44,17 +44,17 @@ async function main() {
     update: {
       title: 'Portrait Studies',
       description: 'A minimal portrait photography album.',
-      layoutType: 'GRID',
       orderIndex: 2,
       isPublished: false,
+      isFeatured: false,
     },
     create: {
       title: 'Portrait Studies',
       slug: 'portrait-studies',
       description: 'A minimal portrait photography album.',
-      layoutType: 'GRID',
       orderIndex: 2,
       isPublished: false,
+      isFeatured: false,
     },
   });
 
@@ -66,18 +66,18 @@ async function main() {
       title: 'Landscape Escapes',
       description:
         'Wide outdoor scenes focused on natural light and open spaces.',
-      layoutType: 'CAROUSEL',
       orderIndex: 3,
       isPublished: true,
+      isFeatured: false,
     },
     create: {
       title: 'Landscape Escapes',
       slug: 'landscape-escapes',
       description:
         'Wide outdoor scenes focused on natural light and open spaces.',
-      layoutType: 'CAROUSEL',
       orderIndex: 3,
       isPublished: true,
+      isFeatured: false,
     },
   });
 
@@ -89,18 +89,18 @@ async function main() {
       title: 'Black And White',
       description:
         'Monochrome photographs with strong contrast and graphic composition.',
-      layoutType: 'MASONRY',
       orderIndex: 4,
       isPublished: true,
+      isFeatured: false,
     },
     create: {
       title: 'Black And White',
       slug: 'black-and-white',
       description:
         'Monochrome photographs with strong contrast and graphic composition.',
-      layoutType: 'MASONRY',
       orderIndex: 4,
       isPublished: true,
+      isFeatured: false,
     },
   });
 }

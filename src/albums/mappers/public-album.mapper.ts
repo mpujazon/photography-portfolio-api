@@ -7,9 +7,9 @@ export function mapAlbumToPublicResponse(album: Album): PublicAlbumResponseDto {
     title: album.title,
     slug: album.slug,
     description: album.description || null,
-    layoutType: album.layoutType,
     coverPhotoUrl: album.coverPhotoId
       ? `https://res.cloudinary.com/.../${album.coverPhotoId}`
       : null,
+    isFeatured: album.isFeatured
   };
 }

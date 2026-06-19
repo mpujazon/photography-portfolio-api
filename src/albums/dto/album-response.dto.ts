@@ -1,8 +1,8 @@
 export class PublicAlbumResponseDto {
   id: string;
-  title: string;
   slug: string;
+  title: string;
   description: string | null;
-  layoutType: string;
   coverPhotoUrl: string | null;
+  isFeatured:   boolean;
 }

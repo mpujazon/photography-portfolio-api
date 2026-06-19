@@ -30,4 +30,14 @@ export class AlbumsService {
     });
     return album ? mapAlbumToPublicResponse(album) : null;
   }
+   async findPublishedFeaturedAlbum(): Promise<PublicAlbumResponseDto | null> {
+    const album = await this.prismaService.album.findFirst({
+      where: {
+        isPublished: true,
+        isFeatured: true
+      },
+      include: { photos: true }
+    });
+    return album ? mapAlbumToPublicResponse(album) : null;
+  }
 }

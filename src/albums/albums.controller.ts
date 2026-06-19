@@ -9,6 +9,13 @@ export class AlbumsController {
     return this.albumsService.findPublishedAlbums();
   }
 
+  @Get('/featured')
+  async findPublishedFeaturedAlbum() {
+    const album = await this.albumsService.findPublishedFeaturedAlbum();
+    if (!album) throw new NotFoundException(`Featured album not found.`);
+    return album;
+  }
+  
   @Get(':slug')
   async findPublishedAlbumBySlug(@Param('slug') slug: string) {
     const album = await this.albumsService.findPublishedAlbumBySlug(slug);

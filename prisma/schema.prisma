@@ -25,10 +25,11 @@ model Photo {
 model Album {
   id           String          @id @default(uuid()) @db.Uuid
   title        String
+  subtitle     String
   slug         String          @unique
   description  String?
   orderIndex   Int             @default(0)
-  coverPhotoId String?         @db.Uuid
+  coverPhotoUrl String?
   isPublished  Boolean         @default(false)
   isFeatured   Boolean         @default(false)
   photos       Photo[]

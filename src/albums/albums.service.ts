@@ -14,6 +14,11 @@ export class AlbumsService {
       orderBy: {
         orderIndex: 'asc',
       },
+      include: {
+        _count:{
+          select:{ photos: true }
+        }
+      }
     });
 
     return albums.map(mapAlbumToPublicResponse);

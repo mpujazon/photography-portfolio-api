@@ -544,15 +544,7 @@ const elmsPhotos = [
 async function main() {
   const motoGpAlbum = await prisma.album.upsert({
     where: { slug: 'moto-gp-catalonia-2026' },
-    update: {
-      title: 'MotoGP Catalonia 2026',
-      subtitle: 'Circuit de Barcelona-Catalunya, May 2026',
-      description: 'Shots from the MotoGP Grand Prix at Circuit de Barcelona-Catalunya, May 2026.',
-      coverPhotoUrl: 'https://res.cloudinary.com/lensbymike/image/upload/v1781895815/_LBM3815_mw4ptu.jpg',
-      orderIndex: 1,
-      isPublished: true,
-      isFeatured: false,
-    },
+    update: {},
     create: {
       title: 'MotoGP Catalonia 2026',
       subtitle: 'Circuit de Barcelona-Catalunya, May 2026',
@@ -567,20 +559,13 @@ async function main() {
 
   const elmsAlbum = await prisma.album.upsert({
     where: { slug: 'elms-catalonia-2023' },
-    update: {
-      title: 'European Le Mans 2023 Catalunya',
-      subtitle: 'Circuit de Barcelona-Catalunya, April 2023',
-      description: 'Endurance racing action from the European Le Mans Series round at Circuit de Barcelona-Catalunya, April 2023.',
-      coverPhotoUrl: 'https://res.cloudinary.com/lensbymike/image/upload/v1781895045/IMG_3191_inwbff.jpg',
-      orderIndex: 2,
-      isPublished: true,
-      isFeatured: true,
-    },
+    update: {},
     create: {
       title: 'European Le Mans 2023 Catalunya',
       subtitle: 'Circuit de Barcelona-Catalunya, April 2023',
       slug: 'elms-catalonia-2023',
       description: 'Endurance racing action from the European Le Mans Series round at Circuit de Barcelona-Catalunya, April 2023.',
+      coverPhotoUrl: 'https://res.cloudinary.com/lensbymike/image/upload/v1781895045/IMG_3191_inwbff.jpg',
       orderIndex: 2,
       isPublished: true,
       isFeatured: true,
@@ -593,12 +578,11 @@ async function main() {
   ];
 
   for (const photo of photoAlbumPairs) {
-    const existing = await prisma.photo.findFirst({ where: { url: photo.url } });
-    if (existing) {
-      await prisma.photo.update({ where: { id: existing.id }, data: { albumId: photo.albumId } });
-    } else {
-      await prisma.photo.create({ data: photo });
-    }
+    await prisma.photo.upsert({
+      where: { url: photo.url },
+      update: {},
+      create: photo,
+    });
   }
 }
 

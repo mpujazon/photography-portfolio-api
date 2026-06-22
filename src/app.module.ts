@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { HealthController } from './health/health.controller';
 import { AlbumsModule } from './albums/albums.module';
 import { PhotosModule } from './photos/photos.module';
+import { ContactModule } from './contact/contact.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { PhotosModule } from './photos/photos.module';
     }),
     AlbumsModule,
     PhotosModule,
+    ContactModule,
   ],
   controllers: [AppController, HealthController],
   providers: [AppService],

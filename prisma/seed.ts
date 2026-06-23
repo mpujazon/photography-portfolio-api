@@ -26,7 +26,7 @@ const albums = [
       'https://res.cloudinary.com/lensbymike/image/upload/v1782140721/IMG_0776_bzyhf1.jpg',
     orderIndex: 3,
     isPublished: true,
-    isFeatured: false,
+    isFeatured: true,
     photos: [
       {
         url: 'https://res.cloudinary.com/lensbymike/image/upload/v1782140748/IMG_0739_dqy7ay.jpg',

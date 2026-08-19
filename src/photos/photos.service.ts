@@ -5,18 +5,18 @@ import { mapPhotoToPublicResponse } from './mappers/public-photo.mapper';
 
 @Injectable()
 export class PhotosService {
-    constructor(private readonly prismaService: PrismaService){}
+  constructor(private readonly prismaService: PrismaService) {}
 
-    async findFeaturedPhotos(): Promise<PublicPhotoResponseDto[]> {
-        const photos = await this.prismaService.photo.findMany({
-            where: {
-                isFeatured: true,
-            },
-            orderBy: {
-                id: 'asc',
-            },
-        });
+  async findFeaturedPhotos(): Promise<PublicPhotoResponseDto[]> {
+    const photos = await this.prismaService.photo.findMany({
+      where: {
+        isFeatured: true,
+      },
+      orderBy: {
+        id: 'asc',
+      },
+    });
 
-        return photos.map(mapPhotoToPublicResponse);
-    }
+    return photos.map(mapPhotoToPublicResponse);
+  }
 }

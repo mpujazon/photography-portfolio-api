@@ -7,7 +7,9 @@ type AlbumWithPhotos = Album & {
   _count?: { photos: number };
 };
 
-export function mapAlbumToPublicResponse(album: AlbumWithPhotos): PublicAlbumResponseDto {
+export function mapAlbumToPublicResponse(
+  album: AlbumWithPhotos,
+): PublicAlbumResponseDto {
   return {
     id: album.id,
     title: album.title,

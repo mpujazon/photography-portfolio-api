@@ -48,7 +48,7 @@ describe('AlbumsService', () => {
       coverPhotoUrl: null,
     });
   });
-  it('should return null when slug does not exist', async ()=> {
+  it('should return null when slug does not exist', async () => {
     mockPrismaService.album.findUnique.mockResolvedValue(null);
     const result = await service.findPublishedAlbumBySlug('does-not-exist');
     expect(result).toEqual(null);

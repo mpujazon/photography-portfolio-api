@@ -15,10 +15,10 @@ export class AlbumsService {
         orderIndex: 'asc',
       },
       include: {
-        _count:{
-          select:{ photos: true }
-        }
-      }
+        _count: {
+          select: { photos: true },
+        },
+      },
     });
 
     return albums.map(mapAlbumToPublicResponse);
@@ -31,17 +31,17 @@ export class AlbumsService {
         slug: slug,
         isPublished: true,
       },
-      include: { photos: true }
+      include: { photos: true },
     });
     return album ? mapAlbumToPublicResponse(album) : null;
   }
-   async findPublishedFeaturedAlbum(): Promise<PublicAlbumResponseDto | null> {
+  async findPublishedFeaturedAlbum(): Promise<PublicAlbumResponseDto | null> {
     const album = await this.prismaService.album.findFirst({
       where: {
         isPublished: true,
-        isFeatured: true
+        isFeatured: true,
       },
-      include: { photos: true }
+      include: { photos: true },
     });
     return album ? mapAlbumToPublicResponse(album) : null;
   }
